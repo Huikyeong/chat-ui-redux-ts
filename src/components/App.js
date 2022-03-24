@@ -45,9 +45,9 @@ function App() {
   }));
 
   const sendMsg = async() => {
+    onAddMsg(0);
     const response = await axios.get('http://localhost:5000/?msg='+text);
     console.log(response.data.message);
-    onAddMsg(0);
     onChangeText(response.data.message);
     onAddMsg(1);
   }

@@ -17,12 +17,12 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-const listener = () => {
-  const state = store.getState();
-  console.log(state);
-};
+// const listener = () => {
+//   const state = store.getState();
+//   console.log(state);
+// };
 
-const unsubscribe = store.subscribe(listener);
+// const unsubscribe = store.subscribe(listener);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
