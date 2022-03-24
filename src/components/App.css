@@ -1,0 +1,94 @@
+.app {
+  background-color: black;
+  height: 100vh;
+  padding: 50px;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: white;
+  width: 370px;
+  height: 500px;
+  border-radius: 15px;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat::-webkit-scrollbar {
+  width: 11px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 370px;
+}
+
+.input-box {
+  background-color: white;
+  width: 300px;
+  height: 20px;
+  outline: none;
+  border: none;
+  padding: 5px 60px 5px 10px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.chat-other {
+  align-self: flex-start;
+  background-color: white;
+  max-width: 200px;
+  min-height: 20px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-bottom: 10px; 
+  margin-left: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  color: gray;
+
+  word-break: break-all;
+}
+
+.chat-me {
+  align-self: flex-end;
+  background-color: gray;
+  max-width: 200px;
+  min-height: 20px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  color: white;
+
+  word-break: break-all;
+}
+
+.button {
+  position: relative;
+  left: -52px;
+  outline: none;
+  border: none;
+  background-color: gray;
+  height: 25px;
+  padding: 5px 10px;
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  color: white;
+}
