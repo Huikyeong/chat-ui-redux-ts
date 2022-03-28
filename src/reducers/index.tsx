@@ -1,11 +1,21 @@
 import * as types from '../actions/ActionTypes';
 
-const initialState = {
+export interface Message {
+    sender: number;
+    content: string;
+}
+
+export interface State {
+    text: string;
+    list: Message[];
+}
+
+const initialState: State = {
     text: '',
     list: []
 };
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state: State = initialState, action: any) {
     switch (action.type) {
         case types.CHANGE_TEXT:
             return {

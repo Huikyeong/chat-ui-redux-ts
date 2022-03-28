@@ -1,10 +1,28 @@
-import React, { useEffect } from 'react';
+import * as React from 'react'; 
+import { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeText, addMsg } from '../actions';
+import { changeText, addMsg, ChangeTextAction, AddMsgAction } from '../actions';
+import { Message } from '../reducers';
+import { RootState, AppDispatch } from '../index';
 
-function SendMsg({ value, handleSubmit, handleChange }) {
+interface SendMsgParam {
+  value: string,
+  handleSubmit: () => void,
+  handleChange: (v: string) => void
+}
+
+interface MessagesParam {
+  msg: Message
+}
+
+interface State {
+  text: string;
+  msgList: Message[];
+}
+
+function SendMsg({ value, handleSubmit, handleChange }: SendMsgParam): JSX.Element {
 
   return (
     <div className='input'>
@@ -16,7 +34,7 @@ function SendMsg({ value, handleSubmit, handleChange }) {
   );
 }
 
-function Messages({ msg }){
+function Messages({ msg }: MessagesParam): JSX.Element {
   return (
     <div className={msg.sender === 1 ? 'chat-other' : 'chat-me'}>
       {msg.content}
@@ -24,12 +42,12 @@ function Messages({ msg }){
   );
 }
 
-function App() {
-  const dispatch = useDispatch();
-  const onChangeText = text => dispatch(changeText(text));
-  const onAddMsg = sender => dispatch(addMsg(sender));
+function App(): JSX.Element {
+  const dispatch: AppDispatch = useDispatch();
+  const onChangeText: ((text: string) => ChangeTextAction) = text => dispatch(changeText(text));
+  const onAddMsg: ((sender: number) => AddMsgAction) = sender => dispatch(addMsg(sender));
 
-  const firstRender = async() => {
+  const firstRender: (() => void) = async() => {
     const response = await axios.get('http://localhost:5000');
     onChangeText(response.data.message);
     onAddMsg(1);
@@ -39,7 +57,7 @@ function App() {
     firstRender();
   }, []);
 
-  const { text, msgList } = useSelector(state => ({
+  const { text, msgList }: State = useSelector((state: RootState) => ({
     text: state.text,
     msgList: state.list
   }));
@@ -55,8 +73,8 @@ function App() {
   return (
     <div className='app'>
       <div className='chat' id='chat-box'>
-        {msgList.map((msg, index) => (
-          <Messages key={index} index={index} msg={msg} />
+        {msgList.map((msg: Message, index: number) => (
+          <Messages key={index} msg={msg} />
         ))}
       </div>
       <SendMsg value={text} handleChange={onChangeText} handleSubmit={sendMsg} />
